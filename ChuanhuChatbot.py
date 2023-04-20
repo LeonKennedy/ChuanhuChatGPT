@@ -170,7 +170,7 @@ with gr.Blocks(css=customCSS, theme=small_and_beautiful_theme) as demo:
                                 with gr.Column():
                                     downloadFile = gr.File(interactive=True)
 
-                with gr.Tab(label=i18n("高级")):
+                with gr.Tab(label=i18n("高级"), visible=False, render=False):
                     gr.Markdown(i18n("# ⚠️ 务必谨慎更改 ⚠️\n\n如果无法使用请恢复默认设置"))
                     gr.HTML(APPEARANCE_SWITCHER, elem_classes="insert_block")
                     with gr.Accordion(i18n("参数"), open=False):
@@ -452,17 +452,14 @@ with gr.Blocks(css=customCSS, theme=small_and_beautiful_theme) as demo:
         show_progress=True,
     )
 
-logging.info(
-    colorama.Back.GREEN
-    + "\n川虎的温馨提示：访问 http://localhost:7860 查看界面"
-    + colorama.Style.RESET_ALL
-)
 # 默认开启本地服务器，默认可以直接从IP访问，默认不创建公开分享链接
 demo.title = i18n("川虎Chat 🚀")
 
 if __name__ == "__main__":
     reload_javascript()
     demo.queue(concurrency_count=CONCURRENT_COUNT).launch(
+        ssl_keyfile="/home/hello/.ssl/97kid.com.key",
+        ssl_certfile="/home/hello/.ssl/97kid.com.crt",
         server_name=server_name,
         server_port=server_port,
         share=share,

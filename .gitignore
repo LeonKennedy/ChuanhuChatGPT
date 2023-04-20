@@ -144,3 +144,4 @@ models/
 lora/
 .idea
 templates/*
+nohup.out
